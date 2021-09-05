@@ -1,0 +1,168 @@
+body{
+  width: 80%;
+  margin: auto;
+  background-image: radial-gradient(circle at 22.52% 42.64%, #fbffff 0, #ecfffd 7.14%, #dafffa 14.29%, #c6fff7 21.43%, #aefff5 28.57%, #92fff3 35.71%, #70fcf2 42.86%, #3cf2f2 50%, #00e7f3 57.14%, #00ddf6 64.29%, #00d4fa 71.43%, #00cbff 78.57%, #00c2ff 85.71%, #00baff 92.86%, #00b3ff 100%);
+}
+
+#columna1{
+  width: 50%;
+  float: left;
+
+}
+#columna2{
+  width: 50%;
+  float: left;
+}
+.semaforo{
+  width: 100%;
+}
+
+.luces{
+  margin: auto;
+}
+.luces-circulo{
+	display: block;
+	width: 100px;
+	height: 100px;
+	border-radius: 50%;
+	background-color: rgb(0, 0,0, 0.3);
+	position: relative;
+}
+
+.luces-circulo::after {
+	content: "";
+	position: absolute;
+	width: 90px;
+	height: 90px;
+	border-radius: 50%;
+	border-right: 4px solid rgb(255, 255, 255,0.6);
+	top: 5%;
+}
+.rectangulo{
+  width: 16%;
+  height: 50%;
+  background-color: #000000;
+  display: flex;
+  align-items: center;
+  position: absolute;
+  right: 25%;
+  top: 15%;
+  border-radius: 10%;
+  border: 5px solid white;
+}
+.base{
+  width: 4%;
+  height: 30%;
+  background-color: #000000;
+  position: absolute;
+  right: 31%;
+  top: 66%;
+  border-radius: 2%;
+  border: 5px solid white;
+}
+
+#c1{
+  background-color: red;
+}
+#c2{
+  background-color: #EAB52B;
+}
+#c3{
+  background-color: #49E821;
+}
+h1{
+  text-align: center;
+  font-size: 250%;
+}
+button{
+  border-radius: 5px;
+  display: inline-block;
+  text-decoration: none;
+  border:2px solid white;
+  text-shadow: 0 1px 0 rbga(255,255,255,0.3);
+  box-shadow: 0 1px 1px rbga(0,0,0,0.3)
+  color: white;
+  background-color: #2C62EB;
+  font-size: 20px;
+  float: right;
+  opacity: 1;
+  font-size: 150%;
+
+}
+.btn:hover{
+  background-color: #37B839;
+}
+.btn:active{
+  background-color: #29962A;
+}
+input{
+  width: 100%;
+  border: 1px dotted #999;
+  border-radius: 5px;
+  -webkit-appearance: none;
+}
+td{
+font-size: 125%;
+}
+.rojo{
+	background-color: #FC2A36;
+	box-shadow: 0 0 20px 1px #FC2A36;
+}
+
+.amarillo{
+	background-color: #f1c40f;
+	box-shadow: 0 0 20px 1px #f1c40f;
+}
+.verde{
+	background-color: #2ecc71;
+	box-shadow: 0 0 20px 1px #2ecc71;
+}
+.marco {
+    border-radius: 30px;
+    background: black;
+    padding: 5%;
+    border: 5px solid white;
+    text-align: center;
+    font-size: 200%;
+    justify-content: center;
+    align-items: center;
+    color: white;
+}
+
+.botones-contenedor {
+    display: flex;
+    justify-content: space-around;
+    background: linear-gradient(black,white);
+
+}
+.btn1 {
+    cursor: pointer;
+    display: inline-block;
+    font-size: 60%;
+    padding: 3%;
+}
+.cuadro{
+  border-radius:15px;
+  background: white;
+  align-items: center;
+  padding: 5%;
+}
+.simu{
+  border-radius:15px;
+  background: #F3F189;
+  align-items: center;
+  padding: 4%;
+  display: flex;
+  justify-content: center;
+  font-size: 150%;
+}
+#canAutos{
+  height: 25px;
+}
+img{
+  width: 18%;
+  padding: 3%;
+  position: absolute;
+  right: 3%;
+  top: 58%
+}

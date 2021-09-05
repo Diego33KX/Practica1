@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>Semaforo</title>
+    <link rel="stylesheet" href=" estilos/css.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"/>
+  </head>
+  <body>
+    <h1>SEMAFORO INTELIGENTE</h1>
+    <div class="" id="columna1">
+      <form class="form"  method="post">
+        <div class="simu">
+          <table>
+            <tr>
+              <td id="principal">Tiempo para la simulacion: </td>
+              <td>
+                <input type="text" name="autos" value="" id="canAutos" placeholder="Tiempo en segundos" >
+              </td>
+            </tr>
+          </table>
+      </div>
+        <br><br>
+
+        <div class="cuadro">
+        <table>
+            <tr>
+              <td>Numero de autos en direccion este: </td>
+              <td><input type="text" name="" value="" placeholder="Este" id="este"></td>
+            </tr>
+
+            <tr>
+              <td>Numero de autos con direccion oeste:</td>
+              <td><input type="text" name="" value="" placeholder="Oeste" id="oeste"></td>
+            </tr>
+
+            <tr>
+              <td>Numero de autos con direccion norte:</td>
+              <td><input type="text" name="" value="" placeholder="Norte" id="norte"></td>
+            </tr>
+
+            <tr>
+              <td>Numero de autos con direccion sur:</td>
+              <td><input type="text" name="" value="" placeholder="Sur" id="sur"></td>
+            </tr>
+
+            <tr>
+              <td><strong><hr>Tiempo de duracion del semaforo en verde: </strong></td>
+            </tr>
+
+            <tr>
+              <td>Tiempo en carril de Norte-Sur</td>
+              <td>
+                <input type="text" name="" value="" id="tiempo1">
+              </td>
+            </tr>
+
+            <tr>
+              <td>Tiempo en carril de Este-Oeste</td>
+              <td>
+                <input type="text" name="" value="" id="tiempo2">
+              </td>
+            </tr>
+
+        </table>
+      </div>
+      <br>
+
+        <button class="btn" type="button" name="button" id="boton" onclick="iniciar()">ENVIAR</button><br>
+
+
+      </form><br>
+      <div class="marco">
+          <div class="tiempo" id="tiempo">00:00:00.000</div>
+          <div class="botones-contenedor">
+            <div class="btn1" onclick="iniciar()">
+              <i class="fas fa-play"></i>
+            </div>
+            <div class="btn1" onclick="pausar()">
+              <i class="fas fa-pause"></i>
+            </div>
+            <div class="btn1" onclick="reiniciar()">
+              <i class="fas fa-undo-alt"></i>
+            </div>
+          </div>
+        </div>
+    </div>
+
+    <div class="" id="columna2">
+      <div class="semaforo">
+        <div class="rectangulo">
+          <div class="luces">
+            <span class="luces-circulo rojo" color="rojo"></span>
+            <span class="luces-circulo" color="amarillo"></span>
+            <span class="luces-circulo" color="verde"></span>
+          </div>
+        </div>
+      </div>
+      <div class="">
+        <img src="img/pista.jpg" alt="">
+      </div>
+    </div>
+    <div class="base">
+    </div>
+
+    <script type="text/javascript">
+
+    function tiempos(){
+      var sur1 = parseInt($("#sur").val());
+      var norte1  = parseInt($("#norte").val());
+      var este1 = parseInt($("#este").val());
+      var oeste1 = parseInt($("#oeste").val());
+      var mayor_carril_1 = 0;
+      var mayor_carril_2 = 0;
+      if(sur1 > norte1){
+        mayor_carril_1=sur1;
+      }else {
+        mayor_carril_1=norte1;
+      }
+
+      if(mayor_carril_1==0 || mayor_carril_1==1){
+        document.getElementById("tiempo1").value = "5s";
+      }else if(mayor_carril_1 > 1 && mayor_carril_1<=3){
+        document.getElementById("tiempo1").value = "15s";
+      }else if(mayor_carril_1> 3 && mayor_carril_1<=5){
+        document.getElementById("tiempo1").value = "30s";
+      }else if(mayor_carril_1 < 5 && mayor_carril_1<=7){
+        document.getElementById("tiempo1").value = "45s";
+      } else{
+        document.getElementById("tiempo1").value = "60s";
+      }
+
+      if(este1>oeste1){
+        mayor_carril_2=este1;
+      }else{
+        mayor_carril_2=oeste1;
+      }
+      if(mayor_carril_2==0 || mayor_carril_2==1){
+        document.getElementById("tiempo2").value = "5s";
+      }else if(mayor_carril_2 > 1 && mayor_carril_2<=3){
+        document.getElementById("tiempo2").value = "15s";
+      }else if(mayor_carril_2> 3 && mayor_carril_2<=5){
+        document.getElementById("tiempo2").value = "30s";
+      }else if(mayor_carril_2 < 5 && mayor_carril_2<=7){
+        document.getElementById("tiempo2").value = "45s";
+      } else{
+        document.getElementById("tiempo2").value = "60s";
+      }
+
+    };
+
+
+
+    function calculo(){
+            var num = parseInt($("#canAutos").val());
+            const $lucesDelCirculo = document.querySelectorAll('.luces-circulo');
+
+            let contadorLuz=0;
+
+            const mostraLuz=()=>{
+                $lucesDelCirculo[contadorLuz].className = 'luces-circulo';
+                contadorLuz++;
+
+                if(contadorLuz>2)contadorLuz=0;
+
+                const luzActual = $lucesDelCirculo[contadorLuz];
+                luzActual.classList.add(luzActual.getAttribute('color'))
+            }
+        if(num<0){
+          alert("Ingresa un numero positivo")
+        }else if(num == 1 || num == 0){
+          setInterval(mostraLuz,5000)
+        }else if(num > 1 && num<=3){
+          setInterval(mostraLuz,15000)
+        }else if(num > 3 && num<=5){
+          setInterval(mostraLuz,30000)
+        }else if(num < 5 && num<=7){
+          setInterval(mostraLuz,45000)
+        } else{
+          setInterval(mostraLuz,60000)
+        }
+        };
+
+
+        /*CRONOMETRO*/
+        let tiempoRef = Date.now()
+        let cronometrar = false
+        let acumulado = 0
+
+        function iniciar() {
+            cronometrar = true
+        }
+
+        function pausar() {
+            cronometrar = false
+        }
+
+        function reiniciar() {
+            acumulado = 0
+        }
+
+        setInterval(() => {
+            let tiempo = document.getElementById("tiempo")
+            if (cronometrar) {
+                acumulado += Date.now() - tiempoRef
+            }
+            tiempoRef = Date.now()
+            tiempo.innerHTML = formatearMS(acumulado)
+        }, 1000 / 60);
+
+        function formatearMS(tiempo_ms) {
+            let MS = tiempo_ms % 1000
+
+            let St = Math.floor(((tiempo_ms - MS) / 1000))
+
+            let S = St%60
+            let M = Math.floor((St / 60) % 60)
+            let H = Math.floor((St/60 / 60))
+            Number.prototype.ceros = function (n) {
+                return (this + "").padStart(n, 0)
+            }
+
+            return H.ceros(2) + ":" + M.ceros(2) + ":" + S.ceros(2)
+                + "." + MS.ceros(3)
+        }
+        /*function enviarTexto(){
+          var texto = document.getElementById("canAutos").value;
+          if (texto<=1){
+            document.getElementById("respuesta").value = "BAJO"
+          }else if (texto > 1 && texto<=3) {
+            document.getElementById("respuesta").value = "MEDIO"
+          }else if (texto > 3 && texto<=5) {
+            document.getElementById("respuesta").value = "ALTO"
+          }else if (texto > 5 && texto<=7) {
+            document.getElementById("respuesta").value = "MUY ALTO"
+          }
+        };
+*/
+        $("#boton").click(function(){
+          calculo();
+          /*enviarTexto();*/
+          tiempos();
+        });
+    </script>
+  </body>
+</html>
